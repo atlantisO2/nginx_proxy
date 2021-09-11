@@ -3,9 +3,12 @@ name: Test - Container Image Build
 on:
   push:
     branches: [master,develop]
+    paths-ignore:
+      - ".github/workflows/test-asdf.yaml"
   pull_request:
     branches: [master,develop]
-
+    paths-ignore:
+      - ".github/workflows/test-asdf.yaml"
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
