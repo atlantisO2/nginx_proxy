@@ -11,11 +11,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: asdf-vm/asdf
-          path: ~/.asdf
+          path: .asdf
           ref: 'v0.8.1'
       - run: |
-          echo '. $HOME/.asdf/asdf.sh' >>~/.bashrc
-          . $HOME/.asdf/asdf.sh
+          echo ". $pwd/.asdf/asdf.sh" >>~/.bashrc
+          . .asdf/asdf.sh
           asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
           asdf list-all terraform
           asdf install terraform 1.0.6
