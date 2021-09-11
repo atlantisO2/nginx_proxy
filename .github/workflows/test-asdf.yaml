@@ -27,4 +27,5 @@ jobs:
           terraform --version
       - name: set terraform
         run: |
+          . .asdf/asdf.sh
           terraform --version
