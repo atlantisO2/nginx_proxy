@@ -7,12 +7,16 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: configure asdf
-        run: |
-          git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
-          echo '. $HOME/.asdf/asdf.sh' >>~/.bashrc
-          asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+      - name: Checkout tools repo
+        uses: actions/checkout@v2
+        with:
+          repository: asdf-vm/asdf
+          path: ~/.asdf
+          ref: 'v0.8.1'
       - run: |
+          echo '. $HOME/.asdf/asdf.sh' >>~/.bashrc
+          . $HOME/.asdf/asdf.sh
+          asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
           asdf list-all terraform
           asdf install terraform 1.0.6
           asdf global terraform 1.0.6
