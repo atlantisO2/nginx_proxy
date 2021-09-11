@@ -13,10 +13,18 @@ jobs:
           repository: asdf-vm/asdf
           path: .asdf
           ref: 'v0.8.1'
-      - run: |
+      - name: set terraform
+        run: |
           echo ". $pwd/.asdf/asdf.sh" >>~/.bashrc
           . .asdf/asdf.sh
           asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
           asdf list-all terraform
           asdf install terraform 1.0.6
           asdf global terraform 1.0.6
+          terraform --version
+          asdf install terraform 0.14.11
+          asdf global terraform 0.14.11
+          terraform --version
+      - name: set terraform
+        run: |
+          terraform --version
