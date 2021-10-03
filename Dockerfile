@@ -1,4 +1,4 @@
-ARG IMAGE=ubuntu:20.04
+ARG IMAGE=ubuntu:21.10
 FROM $IMAGE as builder
 
 COPY sources.list /etc/apt/sources.list
@@ -26,15 +26,9 @@ LABEL maintainer='Robert Reiz <reiz@versioneye.com>'
 COPY nginx_whitelist.conf /usr/local/nginx/conf/nginx.conf
 COPY --from=builder /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx
 COPY --from=builder /tini /tini
-## save apt-get update step
-COPY --from=builder /var/lib/apt/lists/ /var/lib/apt/lists/
 
-RUN apt-get install -y --no-install-recommends libssl-dev && \
-    mkdir -p /usr/local/nginx/logs/ && \
-    touch /usr/local/nginx/logs/error.log && \
-    apt-get clean autoclean && \
-    apt-get autoremove --yes && \
-    rm -rf /var/lib/{apt,dpkg,cache,log}/
+RUN mkdir -p /usr/local/nginx/logs/ && \
+    touch /usr/local/nginx/logs/error.log
 
 EXPOSE 8888
 
