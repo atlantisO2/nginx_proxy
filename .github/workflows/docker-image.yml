@@ -37,11 +37,10 @@ jobs:
           docker images -a --filter "reference=nginx_proxy"
           docker run -d --name nginx_proxy nginx_proxy:latest
           sleep 5
-          nginx_proxy_ip=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx_proxy)
           err=1
           count=0
           while [[ $err != 0 ]]; do
-            curl -sSLv -x $nginx_proxy_ip:8888 --max-time 10 ifconfig.io
+            docker run --network container:nginx_proxy -it --rm mbentley/curl -sSLv -x localhost:8888 --max-time 10 ifconfig.io
             err=$?
             [[ $err == 0 ]] && exit 0
             count=$(( count + 1 ))
