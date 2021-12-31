@@ -32,6 +32,8 @@ jobs:
       - name: Test with curl
         run: |
           set +e
+          docker pull pratikimprowise/nginx_proxy:${{ github.sha }}
+          docker tag pratikimprowise/nginx_proxy:${{ github.sha }} nginx_proxy:latest
           docker images -a --filter "reference=nginx_proxy"
           docker run -d --name nginx_proxy nginx_proxy:latest
           sleep 5
