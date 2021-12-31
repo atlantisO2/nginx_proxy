@@ -27,7 +27,8 @@ RUN apt-get update; \
   make -j$(nproc); \
   make install -j$(nproc); \
   chmod +x /tini
-FROM ubuntu:20.04
+
+FROM ubuntu:21.10
 LABEL maintainer='Robert Reiz <reiz@versioneye.com>'
 
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
