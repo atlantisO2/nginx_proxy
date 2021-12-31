@@ -26,7 +26,7 @@ COPY nginx.conf /usr/local/nginx/conf/nginx.conf
 COPY --from=builder /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx
 COPY --from=builder /tini /tini
 
-RUN mkdir -p /usr/local/nginx/logs/ &&
+RUN mkdir -p /usr/local/nginx/logs/ && \
     touch /usr/local/nginx/logs/error.log
 
 EXPOSE 8888
