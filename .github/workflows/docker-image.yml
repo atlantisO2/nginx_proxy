@@ -40,7 +40,7 @@ jobs:
           err=1
           count=0
           while [[ $err != 0 ]]; do
-            docker run --network container:nginx_proxy -it --rm mbentley/curl -sSLv -x localhost:8888 --max-time 10 ifconfig.io
+            docker run --network container:nginx_proxy --rm mbentley/curl -sSLv -x localhost:8888 --max-time 10 ifconfig.io
             err=$?
             [[ $err == 0 ]] && exit 0
             count=$(( count + 1 ))
