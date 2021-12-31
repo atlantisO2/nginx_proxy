@@ -2,9 +2,6 @@ name: Test - Container Image Build
 
 on:
   push:
-    branches: [master,develop]
-  pull_request:
-    branches: [master,develop]
 
 jobs:
   build-and-test:
