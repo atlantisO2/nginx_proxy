@@ -9,7 +9,7 @@ RUN set -ex; \
     curl -o nginx.tar.gz http://nginx.org/download/nginx-1.21.3.tar.gz; \
     tar -xvzf nginx.tar.gz; \
     rm nginx.tar.gz; \
-    git clone --depth 1 --branch   p102101 https://github.com/levonet/ngx_http_proxy_connect_module; \
+    git clone --depth 1 https://github.com/chobits/ngx_http_proxy_connect_module; \
     cd /app/nginx-*; \
     patch -p1 < ../ngx_http_proxy_connect_module/patch/proxy_connect_rewrite_102101.patch; \
     cd /app/nginx-*; \
